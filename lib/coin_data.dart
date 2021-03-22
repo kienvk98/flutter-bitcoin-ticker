@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 const List<String> currenciesList = [
   'AUD',
   'BRL',
@@ -28,4 +30,18 @@ const List<String> cryptoList = [
   'LTC',
 ];
 
-class CoinData {}
+class CoinData {
+  final String assetIdBase;
+  final String assetIdQuote;
+  final double rate;
+
+  CoinData({this.assetIdBase, this.assetIdQuote, this.rate});
+
+  factory CoinData.fromJson(Map<String, dynamic> json){
+    return CoinData(
+      assetIdBase: json['asset_id_base'],
+      assetIdQuote: json['asset_id_quote'],
+      rate: json['rate'],
+    );
+  }
+}
